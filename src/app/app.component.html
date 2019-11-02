@@ -1,0 +1,63 @@
+<mat-tab-group mat-stretch-tabs>
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<mat-icon class="main-tab-icon">search</mat-icon>
+		</ng-template>
+		<div class="tab-content">
+			<mat-form-field style="width: 100%;">
+				<input matInput (keyup)="applyFilter()" placeholder="Search">
+			</mat-form-field>
+			Tab1
+		</div>
+	</mat-tab>
+
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<mat-icon class="main-tab-icon">bookmark</mat-icon>
+		</ng-template>
+		<div class="tab-content">
+			<p class="tab-title">
+				On The Menu
+			</p>
+			Tab2
+		</div>
+	</mat-tab>
+
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<mat-icon class="main-tab-icon">shopping_cart</mat-icon>
+		</ng-template>
+		<div class="tab-content">
+			<div class="tab-title">
+				To Buy
+			</div>
+			<div *ngFor="let groceryType of shoppingCart">
+				<p>
+					{{groceryType.title}}
+				</p>
+				<div *ngFor="let item of groceryType.items">
+					<app-grocery-card [(item)]='item'></app-grocery-card>
+				</div>
+			</div>
+		</div>
+	</mat-tab>
+
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<mat-icon class="main-tab-icon">done</mat-icon>
+		</ng-template>
+		<div class="tab-content">
+				<div class="tab-title">
+					Purchased
+				</div>
+				<div *ngFor="let groceryType of shoppingCart">
+					<p>
+						{{groceryType.title}}
+					</p>
+					<div *ngFor="let item of groceryType.items">
+						<app-grocery-card [(item)]='item'></app-grocery-card>
+					</div>
+				</div>
+			</div>
+	</mat-tab>
+</mat-tab-group>
