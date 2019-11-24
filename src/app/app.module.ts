@@ -7,11 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material-module';
 import { GroceryCardComponent } from './grocery-card/grocery-card.component';
+import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GroceryCardComponent
+    GroceryCardComponent,
+    RecipeCardComponent
   ],
   imports: [
     BrowserModule,

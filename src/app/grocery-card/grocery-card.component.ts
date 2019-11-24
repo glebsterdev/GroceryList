@@ -1,19 +1,19 @@
-import { Component, OnInit, Input, Output, Inject } from '@angular/core';
-
-export class Item {
-  title: string
-  quantity: string
-}
+import { Component, OnInit, Input, Output, Inject } from '@angular/core'
+import { AppComponent } from '../app.component'
+import { GroceryItemDisplay } from '../model/model'
 
 @Component({
-  selector: 'app-grocery-card',
-  templateUrl: './grocery-card.component.html',
-  styleUrls: ['./grocery-card.component.scss']
+	selector: 'app-grocery-card',
+	templateUrl: './grocery-card.component.html',
+	styleUrls: ['./grocery-card.component.scss']
 })
 export class GroceryCardComponent {
 
-  @Input('item') item: Item = new Item()
+	@Input('grocery') grocery: GroceryItemDisplay = new GroceryItemDisplay()
 
-  constructor() { }
+	constructor(@Inject(AppComponent) public appComponent: AppComponent) { }
 
+	clicked() {
+		this.appComponent.itemSelected(this.grocery.title)
+	}
 }

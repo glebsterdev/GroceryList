@@ -4,22 +4,50 @@
 			<mat-icon class="main-tab-icon">search</mat-icon>
 		</ng-template>
 		<div class="tab-content">
-			<mat-form-field style="width: 100%;">
-				<input matInput (keyup)="applyFilter()" placeholder="Search">
-			</mat-form-field>
-			Tab1
+			<mat-grid-list cols="3" rowHeight="48px">
+				<mat-grid-tile colspan=1>
+					<div style="position: absolute; left: 0;">
+						Recepies
+					</div>
+				</mat-grid-tile>
+				<mat-grid-tile colspan=1>
+					<button mat-icon-button>
+						<mat-icon>add</mat-icon>
+					</button>
+				</mat-grid-tile>
+			</mat-grid-list>
+
+			<div *ngFor="let r of allRecipes">
+				<app-recipe-card [(recipe)]='r'></app-recipe-card>
+			</div>
 		</div>
 	</mat-tab>
 
 	<mat-tab>
 		<ng-template mat-tab-label>
-			<mat-icon class="main-tab-icon">bookmark</mat-icon>
+			<mat-icon class="main-tab-icon">star</mat-icon>
 		</ng-template>
 		<div class="tab-content">
-			<p class="tab-title">
+			<p>
+				Favorites
+			</p>
+			<div *ngFor="let r of favoriteRecipes">
+				<app-recipe-card [(recipe)]='r'></app-recipe-card>
+			</div>
+		</div>
+	</mat-tab>
+
+	<mat-tab>
+		<ng-template mat-tab-label>
+			<mat-icon class="main-tab-icon">restaurant</mat-icon>
+		</ng-template>
+		<div class="tab-content">
+			<p>
 				On The Menu
 			</p>
-			Tab2
+			<div *ngFor="let r of selectedRecipes">
+				<app-recipe-card [(recipe)]='r'></app-recipe-card>
+			</div>
 		</div>
 	</mat-tab>
 
@@ -28,15 +56,24 @@
 			<mat-icon class="main-tab-icon">shopping_cart</mat-icon>
 		</ng-template>
 		<div class="tab-content">
-			<div class="tab-title">
-				To Buy
-			</div>
-			<div *ngFor="let groceryType of shoppingCart">
+			<mat-grid-list cols="3" rowHeight="48px">
+				<mat-grid-tile colspan=1>
+					<div style="position: absolute; left: 0;">
+						To Buy
+					</div>
+				</mat-grid-tile>
+				<mat-grid-tile colspan=1>
+					<button mat-icon-button>
+						<mat-icon>add</mat-icon>
+					</button>
+				</mat-grid-tile>
+			</mat-grid-list>
+			<div *ngFor="let group of toBuyItems">
 				<p>
-					{{groceryType.title}}
+					{{group.title}}
 				</p>
-				<div *ngFor="let item of groceryType.items">
-					<app-grocery-card [(item)]='item'></app-grocery-card>
+				<div *ngFor="let i of group.items">
+					<app-grocery-card [(grocery)]='i'></app-grocery-card>
 				</div>
 			</div>
 		</div>
@@ -47,17 +84,17 @@
 			<mat-icon class="main-tab-icon">done</mat-icon>
 		</ng-template>
 		<div class="tab-content">
-				<div class="tab-title">
-					Purchased
-				</div>
-				<div *ngFor="let groceryType of shoppingCart">
-					<p>
-						{{groceryType.title}}
-					</p>
-					<div *ngFor="let item of groceryType.items">
-						<app-grocery-card [(item)]='item'></app-grocery-card>
-					</div>
+			<p>
+				Purchased
+			</p>
+			<div *ngFor="let group of purchasedItems">
+				<p>
+					{{group.title}}
+				</p>
+				<div *ngFor="let i of group.items">
+					<app-grocery-card [(grocery)]='i'></app-grocery-card>
 				</div>
 			</div>
+		</div>
 	</mat-tab>
 </mat-tab-group>

@@ -21,21 +21,7 @@ const httpOptions = {
 
 @Injectable()
 export class ServiceComponent {
-    types = [
-        {id: 0, title: 'Vegetable'},
-        {id: 1, title: 'Herb'},
-        {id: 2, title: 'Meat'},
-        {id: 3, title: 'Canned'}
-    ]
-
-    groceries = [
-        {id: 0, type: 0, title: 'Leak', pakage: ''},
-        {id: 1, type: 0, title: 'Tomato', pakage: ''},
-
-        {id: 10, type: 2, title: 'Ground Beef', pakage: 'g'},
-    ]
-
-    constructor(private http: HttpClient, private snackBar: MatSnackBar) {
+        constructor(private http: HttpClient, private snackBar: MatSnackBar) {
 
     }
 
